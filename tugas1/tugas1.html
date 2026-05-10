@@ -110,28 +110,6 @@
     align-items: center;
   }
 
-  .hero-text { }
-
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
-  }
-
   .hero-name {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -153,23 +131,6 @@
     max-width: 440px;
   }
 
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .tag {
-    font-size: 0.78rem;
-    font-weight: 500;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: var(--accent-light);
-    color: var(--brown);
-    border: 1px solid var(--border);
-  }
-
   .hero-photo-wrap {
     position: relative;
     display: flex;
@@ -180,50 +141,19 @@
     width: 360px;
     height: 440px;
     border-radius: 200px 200px 120px 120px;
-    background: linear-gradient(145deg, #D4B896, #C49A5A);
+    background: #D4B896;
     position: relative;
     overflow: hidden;
     border: 3px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   }
 
-  .photo-initials {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    font-size: 6rem;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: -0.02em;
-  }
-
-  .photo-badge {
-    position: absolute;
-    bottom: 2rem;
-    right: -1rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    min-width: 130px;
-  }
-
-  .badge-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.8rem;
-    color: var(--charcoal);
-    line-height: 1;
-  }
-
-  .badge-label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 0.2rem;
+  /* Penyesuaian Ukuran Foto Profil */
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ini memastikan foto memenuhi bingkai tanpa distorsi */
+    object-position: center;
   }
 
   /* SECTION WRAPPER */
@@ -296,65 +226,6 @@
     margin-top: 0.2rem;
   }
 
-  .bio-about {
-    margin-top: 2rem;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .bio-about-text {
-    font-size: 0.95rem;
-    color: var(--muted);
-    line-height: 1.9;
-  }
-
-  .skills-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .skill-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .skill-name {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--charcoal);
-    width: 110px;
-    flex-shrink: 0;
-  }
-
-  .skill-bar-track {
-    flex: 1;
-    height: 4px;
-    background: var(--accent-light);
-    border-radius: 99px;
-    overflow: hidden;
-  }
-
-  .skill-bar-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 99px;
-    animation: grow 1.2s ease forwards;
-    transform-origin: left;
-  }
-
-  @keyframes grow {
-    from { width: 0%; }
-    to { width: var(--w); }
-  }
-
   /* GALLERY */
   .gallery-grid {
     display: grid;
@@ -367,19 +238,7 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
-  }
-
-  .gallery-img-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
-    transition: transform 0.4s ease;
+    background: var(--border);
   }
 
   .gallery-card img {
@@ -390,37 +249,7 @@
     transition: transform 0.4s ease;
   }
 
-  .gallery-card:hover img,
-  .gallery-card:hover .gallery-img-placeholder { transform: scale(1.04); }
-
-  .g1 { background: linear-gradient(135deg, #C49A5A, #8B6A3C); color: rgba(255,255,255,0.7); }
-  .g2 { background: linear-gradient(135deg, #6B9B8E, #3D6B62); color: rgba(255,255,255,0.7); }
-  .g3 { background: linear-gradient(135deg, #9B7B6B, #6B4C3C); color: rgba(255,255,255,0.7); }
-  .g4 { background: linear-gradient(135deg, #7B8B9B, #4B5C6B); color: rgba(255,255,255,0.7); }
-  .g5 { background: linear-gradient(135deg, #A89B7A, #7A6B5A); color: rgba(255,255,255,0.7); }
-
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(30,28,25,0);
-    display: flex;
-    align-items: flex-end;
-    padding: 1.25rem;
-    transition: background 0.3s;
-  }
-
-  .gallery-card:hover .gallery-overlay { background: rgba(30,28,25,0.45); }
-
-  .gallery-caption {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: white;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-
-  .gallery-card:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+  .gallery-card:hover img { transform: scale(1.04); }
 
   /* VIDEO */
   .video-grid {
@@ -434,117 +263,56 @@
     border-radius: 14px;
     border: 1px solid var(--border);
     overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .video-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
   }
 
   .video-thumb {
     aspect-ratio: 16 / 9;
     width: 100%;
+    background: #333;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    cursor: pointer;
   }
-
-  .v1 { background: linear-gradient(135deg, #1E1C19, #3D3830); }
-  .v2 { background: linear-gradient(135deg, #1A2C22, #2E4A38); }
-  .v3 { background: linear-gradient(135deg, #2A1C14, #4A3020); }
 
   .play-btn {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(196,154,90,0.9);
+    background: var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s, background 0.2s;
-  }
-
-  .video-thumb:hover .play-btn {
-    transform: scale(1.1);
-    background: var(--gold);
   }
 
   .play-icon {
     width: 0;
     height: 0;
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    border-left: 16px solid white;
-    margin-left: 3px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 14px solid white;
+    margin-left: 4px;
   }
 
-  .video-info {
-    padding: 1rem 1.1rem 1.25rem;
-  }
-
-  .video-cat {
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-  }
-
-  .video-title {
-    font-weight: 500;
-    font-size: 0.92rem;
-    color: var(--charcoal);
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-  }
-
-  .video-meta {
-    font-size: 0.75rem;
-    color: var(--muted);
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  /* DIVIDER */
-  .section-divider {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .section-divider hr {
-    border: none;
-    border-top: 1px solid var(--border);
-  }
+  .video-info { padding: 1.2rem; }
 
   /* FOOTER */
   footer {
     background: var(--charcoal);
     color: rgba(255,255,255,0.5);
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
     font-size: 0.8rem;
-    letter-spacing: 0.05em;
     margin-top: 4rem;
   }
-
-  footer span { color: var(--gold); }
 
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; text-align: center; padding-top: 3rem; }
     .hero-desc { margin: 0 auto 2rem; }
-    .hero-tags { justify-content: center; }
     .hero-photo-wrap { order: -1; }
-    .photo-frame { width: 240px; height: 290px; }
+    .photo-frame { width: 280px; height: 340px; }
     .bio-grid { grid-template-columns: 1fr 1fr; }
-    .bio-about { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .video-grid { grid-template-columns: 1fr; }
-    .nav-links { gap: 1rem; }
   }
 </style>
 </head>
@@ -564,20 +332,19 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-text">
     <h1 class="hero-name">Muhammad<br><em>Fahrizal Hasbi</em></h1>
-    <p class="hero-desc">Mahasiswa aktif program studi sosial ekonomi perikanan fakultas perikanan dan ilmu kelautan universitas lambung mangkurat.</p>
+    <p class="hero-desc">Mahasiswa aktif program studi Sosial Ekonomi Perikanan, Fakultas Perikanan dan Ilmu Kelautan, Universitas Lambung Mangkurat.</p>
   </div>
   <div class="hero-photo-wrap">
     <div class="photo-frame">
-      <img  scr="Fotoku.jpg"=Foto <img>
+      <!-- Pastikan nama file gambar sesuai (misal: Fotoku.jpg) -->
+      <img src="Fotoku.jpg" alt="Foto Profil Muhammad Fahrizal Hasbi">
     </div>
   </div>
 </div>
 
-<!-- BIODATA -->
 <section id="biodata">
   <div class="section-header">
     <span class="section-num">01</span>
@@ -598,17 +365,16 @@
     <div class="bio-item">
       <div class="bio-label">Tanggal Lahir</div>
       <div class="bio-value">27 Agustus 2004</div>
-      <div class="bio-sub">22 Tahun</div>
+      <div class="bio-sub">20 Tahun</div>
     </div>
     <div class="bio-item">
       <div class="bio-label">Pendidikan</div>
-      <div class="bio-value">S1 Sosia; Ekonomi Perikanan</div>
+      <div class="bio-value">S1 Sosial Ekonomi Perikanan</div>
       <div class="bio-sub">Universitas Lambung Mangkurat</div>
     </div>
     <div class="bio-item">
       <div class="bio-label">Email</div>
       <div class="bio-value">Nurmuhammadhasbi0@email.com</div>
-      <div class="bio-sub">Akun yang aktif</div>
     </div>
     <div class="bio-item">
       <div class="bio-label">Agama</div>
@@ -617,9 +383,6 @@
   </div>
 </section>
 
-<div class="section-divider"><hr></div>
-
-<!-- GALLERY -->
 <section id="gallery">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -629,35 +392,12 @@
 
   <div class="gallery-grid">
     <div class="gallery-card">
-      <img src="Foto_belakang.jpeg" alt="Foto 1">
-      <div class="gallery-overlay">
-        <span class="gallery-caption">Foto 1 — 2024</span>
-      </div>
+      <img src="Foto_belakang.jpeg" alt="Gallery 1">
     </div>
-    <div class="gallery-card">
-      <div class="gallery-img-placeholder g2">Foto 2</div>
-      <div class="gallery-overlay">
-        <span class="gallery-caption">Foto 2</span>
-      </div>
-    </div>
-    <div class="gallery-card">
-      <div class="gallery-img-placeholder g3">Foto 3</div>
-      <div class="gallery-overlay">
-        <span class="gallery-caption">Foto 3</span>
-      </div>
-    </div>
-    <div class="gallery-card">
-      <div class="gallery-img-placeholder g4">Foto 4</div>
-      <div class="gallery-overlay">
-        <span class="gallery-caption">Foto 4</span>
-      </div>
-    </div>
+    <!-- Tambahkan foto lainnya di sini -->
   </div>
 </section>
 
-<div class="section-divider"><hr></div>
-
-<!-- VIDEO -->
 <section id="video">
   <div class="section-header">
     <span class="section-num">03</span>
@@ -667,51 +407,18 @@
 
   <div class="video-grid">
     <div class="video-card">
-      <div class="video-thumb v1">
+      <div class="video-thumb">
         <div class="play-btn"><div class="play-icon"></div></div>
       </div>
       <div class="video-info">
-        <div class="video-cat">Dokumenter</div>
-        <div class="video-title">Kehidupan di Pasar Terapung Banjarmasin</div>
-        <div class="video-meta">
-          <span>8:42</span>
-          <span>12 Jan 2024</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-thumb v2">
-        <div class="play-btn"><div class="play-icon"></div></div>
-      </div>
-      <div class="video-info">
-        <div class="video-cat">Alam &amp; Lingkungan</div>
-        <div class="video-title">Eksplorasi Mangrove Pesisir Kalimantan</div>
-        <div class="video-meta">
-          <span>5:18</span>
-          <span>3 Feb 2024</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-thumb v3">
-        <div class="play-btn"><div class="play-icon"></div></div>
-      </div>
-      <div class="video-info">
-        <div class="video-cat">Budaya</div>
-        <div class="video-title">Festival Aruh Baharin — Tradisi Dayak</div>
-        <div class="video-meta">
-          <span>11:05</span>
-          <span>20 Mar 2024</span>
-        </div>
+        <div class="video-title">Aktivitas Perkuliahan</div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  Dibuat dengan <span>&#9829;</span> oleh Arya Santosa &mdash; Banjarmasin, Kalimantan Selatan
+  Dibuat oleh Muhammad Fahrizal Hasbi &mdash; Banjarmasin, Kalimantan Selatan
 </footer>
 
 </body>
