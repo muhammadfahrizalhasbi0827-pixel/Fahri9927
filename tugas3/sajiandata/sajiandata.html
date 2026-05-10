@@ -3,76 +3,254 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sajian Data</title>
+<title>Dashboard Sajian Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --primary: #4361ee;
+    --primary-hover: #3a56d4;
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --sidebar-width: 240px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
-    font-family: Arial, sans-serif;
-    background-color: #eef2f3;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  aside {
+    width: var(--sidebar-width);
+    background-color: #1e293b;
+    color: white;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: fixed;
     height: 100vh;
-    margin: 0;
   }
 
-  .container {
-    text-align: center;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+  aside h2 {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  h1 {
-    margin-bottom: 20px;
-    color: #333;
+  .nav-menu {
+    list-style: none;
+    flex-grow: 1;
   }
 
-  a.button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #4285F4;
-    color: white;
-    font-size: 16px;
+  .nav-menu li {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-menu a {
     text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-  }
-
-  a.button:hover {
-    background-color: #357ae8;
-  }
-
-  /* Navigasi Kembali */
-  .nav-back {
-    margin-top: 20px;
-  }
-
-  .nav-back a {
-    text-decoration: none;
-    color: #555;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: 2px solid #555;
+    color: #cbd5e1;
+    padding: 0.75rem 1rem;
+    display: block;
     border-radius: 8px;
     transition: all 0.3s;
+    font-size: 0.9rem;
   }
 
-  .nav-back a:hover {
-    background-color: #555;
-    color: #fff;
+  .nav-menu a.active, .nav-menu a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+  }
+
+  .btn-logout {
+    margin-top: auto;
+    text-decoration: none;
+    color: #fca5a5;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    margin-left: var(--sidebar-width);
+    flex-grow: 1;
+    padding: 2rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  /* STATS CARDS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+  }
+
+  .stat-card span {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+  }
+
+  /* DASHBOARD PREVIEW BOX */
+  .dashboard-container {
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+
+  .icon-box {
+    width: 80px;
+    height: 80px;
+    background: #eff6ff;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .dashboard-container h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .dashboard-container p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .button-primary {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+  }
+
+  .button-primary:hover {
+    background-color: var(--primary-hover);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    aside {
+      display: none;
+    }
+    main {
+      margin-left: 0;
+      padding: 1rem;
+    }
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Isi Sajian data</h1>
-    <a class="button" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">Buka Sajian Data</a>
-  </div>
-  <div class="nav-back">
-    <a href="../index2.html">Kembali ke Halaman Utama</a>
-  </div>
+
+  <!-- Sidebar -->
+  <aside>
+    <h2>📊 DataSystem</h2>
+    <ul class="nav-menu">
+      <li><a href="#" class="active">Dashboard</a></li>
+      <li><a href="#">Laporan Tahunan</a></li>
+      <li><a href="#">Statistik</a></li>
+      <li><a href="#">Pengaturan</a></li>
+    </ul>
+    <a href="../index2.html" class="btn-logout">
+      ⬅ Kembali ke Beranda
+    </a>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main>
+    <div class="header">
+      <h1>Sajian Data Interaktif</h1>
+      <div style="font-size: 0.85rem; color: var(--text-muted);">
+        Update Terakhir: 24 Mei 2024
+      </div>
+    </div>
+
+    <!-- KPI Cards (Hanya Visual Dashboard) -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span>Total Responden</span>
+        <h3>1,284</h3>
+      </div>
+      <div class="stat-card">
+        <span>Pertumbuhan</span>
+        <h3 style="color: #10b981;">+12.5%</h3>
+      </div>
+      <div class="stat-card">
+        <span>Kualitas Data</span>
+        <h3>Sangat Baik</h3>
+      </div>
+    </div>
+
+    <!-- Area Konten Utama -->
+    <div class="dashboard-container">
+      <div class="icon-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </div>
+      <h2>Visualisasi Google Looker Studio</h2>
+      <p>Klik tombol di bawah untuk mengakses dashboard lengkap. Anda dapat memfilter data, melihat grafik pertumbuhan, dan mendownload laporan secara real-time.</p>
+      
+      <a class="button-primary" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">
+        Buka Dashboard Sekarang
+      </a>
+    </div>
+
+  </main>
+
 </body>
 </html>
