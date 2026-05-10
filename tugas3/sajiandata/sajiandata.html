@@ -3,120 +3,138 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Sajian Data</title>
-    <!-- Menggunakan Chart.js untuk Grafik -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard Integrasi Looker Studio</title>
     <style>
         :root {
             --primary-color: #4285F4;
-            --bg-color: #f4f7f6;
+            --bg-color: #f0f2f5;
             --card-bg: #ffffff;
-            --text-dark: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Header Dashboard */
+        /* Header */
         .header {
             width: 100%;
-            background-color: var(--card-bg);
-            padding: 20px 0;
+            background: white;
+            padding: 15px 0;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* Container Utama */
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: 95%;
+            max-width: 1400px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* Grid Layout untuk KPI */
-        .kpi-container {
+        /* Info Bar / KPI Ringkas */
+        .info-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .kpi-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
-            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
         }
 
-        .kpi-card h3 {
-            margin: 0;
-            font-size: 14px;
-            color: #777;
-            text-transform: uppercase;
+        .info-card span {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
         }
 
-        .kpi-card p {
-            margin: 10px 0 0;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-dark);
+        .info-card strong {
+            font-size: 1.2rem;
+            color: #222;
         }
 
-        /* Layout Grafik */
-        .charts-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .chart-card {
-            background: var(--card-bg);
-            padding: 20px;
+        /* Wrapper untuk Looker Studio (Data Studio) */
+        .report-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Aspect Ratio 16:9 */
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* Tombol Aksi */
-        .action-area {
+        .report-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Tombol Navigasi */
+        .footer-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-bottom: 50px;
+            margin-top: 10px;
+            margin-bottom: 40px;
         }
 
-        .button {
-            padding: 12px 24px;
-            background-color: var(--primary-color);
-            color: white;
+        .btn {
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
             transition: 0.3s;
         }
 
-        .button:hover {
-            background-color: #357ae8;
-            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-        }
-
-        .nav-back {
-            text-decoration: none;
+        .btn-outline {
             color: #555;
-            font-weight: bold;
+            border: 1px solid #ccc;
         }
 
-        @media (max-width: 600px) {
-            .charts-container {
-                grid-template-columns: 1fr;
+        .btn-outline:hover {
+            background: #eee;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #357ae8;
+        }
+
+        /* Mode Mobile */
+        @media (max-width: 768px) {
+            .report-container {
+                padding-top: 150%; /* Lebih tinggi di mobile agar enak di-scroll */
             }
         }
     </style>
@@ -124,93 +142,44 @@
 <body>
 
 <div class="header">
-    <h1>Dashboard Sajian Data</h1>
-    <p>Ringkasan performa dan statistik terbaru</p>
+    <h1>Panel Sajian Data Interaktif</h1>
 </div>
 
 <div class="container">
-    <!-- KPI Section -->
-    <div class="kpi-container">
-        <div class="kpi-card">
-            <h3>Bank</h3>
-            <p id="Bank">12,540</p>
+    
+    <!-- Bagian KPI (Data Statis Pendukung) -->
+    <div class="info-bar">
+        <div class="info-card">
+            <span>Status Laporan</span>
+            <strong>Real-Time</strong>
         </div>
-        <div class="kpi-card">
-            <h3>Data Terproses</h3>
-            <p id="total-data">845</p>
+        <div class="info-card">
+            <span>Sumber Data</span>
+            <strong>Google Sheets / SQL</strong>
         </div>
-        <div class="kpi-card">
-            <h3>Efisiensi</h3>
-            <p id="efisiensi">92%</p>
-        </div>
-        <div class="kpi-card">
-            <h3>Kepuasan</h3>
-            <p id="kepuasan">4.8/5</p>
+        <div class="info-card">
+            <span>Update Terakhir</span>
+            <strong id="current-date"></strong>
         </div>
     </div>
 
-    <!-- Charts Section -->
-    <div class="charts-container">
-        <div class="chart-card">
-            <canvas id="barChart"></canvas>
-        </div>
-        <div class="chart-card">
-            <canvas id="lineChart"></canvas>
-        </div>
+    <!-- Looker Studio Embed Section -->
+    <div class="report-container">
+        <!-- URL di bawah menggunakan link embed khusus Looker Studio -->
+        <iframe src="https://lookerstudio.google.com/embed/reporting/oaEfAvxaFTo/page/1M" allowfullscreen></iframe>
     </div>
 
-    <!-- Actions Section -->
-    <div class="action-area">
-        <a href="../index2.html" class="nav-back">← Kembali ke Utama</a>
-        <a class="button" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">Buka Laporan Lengkap (Looker Studio)</a>
+    <!-- Navigasi Bawah -->
+    <div class="footer-nav">
+        <a href="../index2.html" class="btn btn-outline">← Kembali ke Menu Utama</a>
+        <a href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank" class="btn btn-primary">Buka Fullscreen</a>
     </div>
 </div>
 
 <script>
-    // Konfigurasi Grafik Batang (Bar Chart)
-    const ctxBar = document.getElementById('barChart').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
-            datasets: [{
-                label: 'Data Masuk Bulanan',
-                data: [65, 59, 80, 81, 56, 95],
-                backgroundColor: 'rgba(66, 133, 244, 0.7)',
-                borderColor: 'rgba(66, 133, 244, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Statistik Data Bulanan' }
-            }
-        }
-    });
-
-    // Konfigurasi Grafik Garis (Line Chart)
-    const ctxLine = document.getElementById('lineChart').getContext('2d');
-    new Chart(ctxLine, {
-        type: 'line',
-        data: {
-            labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-            datasets: [{
-                label: 'Tren Aktivitas',
-                data: [120, 190, 300, 250, 220, 450, 400],
-                fill: true,
-                backgroundColor: 'rgba(52, 168, 83, 0.2)',
-                borderColor: 'rgba(52, 168, 83, 1)',
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Tren Pengguna Mingguan' }
-            }
-        }
-    });
+    // Menampilkan tanggal hari ini secara otomatis
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', options);
 </script>
 
 </body>
