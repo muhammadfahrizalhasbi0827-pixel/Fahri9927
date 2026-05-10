@@ -1,186 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Integrasi Looker Studio</title>
-    <style>
-        :root {
-            --primary-color: #4285F4;
-            --bg-color: #f0f2f5;
-            --card-bg: #ffffff;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sajian Data</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  .container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
 
-        /* Header */
-        .header {
-            width: 100%;
-            background: white;
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
 
-        .header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #333;
-        }
+  a.button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #4285F4;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
 
-        /* Container Utama */
-        .container {
-            width: 95%;
-            max-width: 1400px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+  a.button:hover {
+    background-color: #357ae8;
+  }
 
-        /* Info Bar / KPI Ringkas */
-        .info-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
+  /* Navigasi Kembali */
+  .nav-back {
+    margin-top: 20px;
+  }
 
-        .info-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-color);
-        }
+  .nav-back a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
 
-        .info-card span {
-            display: block;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .info-card strong {
-            font-size: 1.2rem;
-            color: #222;
-        }
-
-        /* Wrapper untuk Looker Studio (Data Studio) */
-        .report-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* Aspect Ratio 16:9 */
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .report-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Tombol Navigasi */
-        .footer-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-outline {
-            color: #555;
-            border: 1px solid #ccc;
-        }
-
-        .btn-outline:hover {
-            background: #eee;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #357ae8;
-        }
-
-        /* Mode Mobile */
-        @media (max-width: 768px) {
-            .report-container {
-                padding-top: 150%; /* Lebih tinggi di mobile agar enak di-scroll */
-            }
-        }
-    </style>
+  .nav-back a:hover {
+    background-color: #555;
+    color: #fff;
+  }
+</style>
 </head>
 <body>
-
-<div class="header">
-    <h1>Panel Sajian Data Interaktif</h1>
-</div>
-
-<div class="container">
-    
-    <!-- Bagian KPI (Data Statis Pendukung) -->
-    <div class="info-bar">
-        <div class="info-card">
-            <span>Status Laporan</span>
-            <strong>Real-Time</strong>
-        </div>
-        <div class="info-card">
-            <span>Sumber Data</span>
-            <strong>Google Sheets / SQL</strong>
-        </div>
-        <div class="info-card">
-            <span>Update Terakhir</span>
-            <strong id="current-date"></strong>
-        </div>
-    </div>
-
-    <!-- Looker Studio Embed Section -->
-    <div class="report-container">
-        <!-- URL di bawah menggunakan link embed khusus Looker Studio -->
-        <iframe src="https://lookerstudio.google.com/embed/reporting/oaEfAvxaFTo/page/1M" allowfullscreen></iframe>
-    </div>
-
-    <!-- Navigasi Bawah -->
-    <div class="footer-nav">
-        <a href="../index2.html" class="btn btn-outline">← Kembali ke Menu Utama</a>
-        <a href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank" class="btn btn-primary">Buka Fullscreen</a>
-    </div>
-</div>
-
-<script>
-    // Menampilkan tanggal hari ini secara otomatis
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', options);
-</script>
-
+  <div class="container">
+    <h1>Isi Sajian data</h1>
+    <a class="button" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">Buka Sajian Data</a>
+  </div>
+  <div class="nav-back">
+    <a href="../index2.html">Kembali ke Halaman Utama</a>
+  </div>
 </body>
 </html>
