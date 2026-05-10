@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Sajian Data</title>
-    <!-- Memasukkan library Chart.js -->
+    <!-- Chart.js untuk Grafik -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4285F4;
+            --success: #34A853;
+            --warning: #FBBC05;
+            --danger: #EA4335;
             --bg: #f4f7f6;
-            --white: #ffffff;
             --text: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             margin: 0;
-            padding: 20px;
             color: var(--text);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
+        .sidebar-nav {
+            background: white;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        h1 { margin: 0; font-size: 24px; }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
 
-        /* Style Kartu Ringkasan */
+        /* Stats Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -45,143 +49,219 @@
         }
 
         .card {
-            background: var(--white);
+            background: white;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
         }
 
-        .card h3 { margin: 0; font-size: 14px; color: #777; }
-        .card p { margin: 10px 0 0; font-size: 24px; font-weight: bold; color: var(--primary); }
+        .card h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #777;
+            text-transform: uppercase;
+        }
 
-        /* Style Area Grafik */
+        .card .value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--primary);
+        }
+
+        /* Charts Section */
         .charts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: 2fr 1fr;
             gap: 20px;
+            margin-bottom: 30px;
         }
 
-        .chart-container {
-            background: var(--white);
+        @media (max-width: 768px) {
+            .charts-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Table Section */
+        .table-container {
+            background: white;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            min-height: 300px;
+            overflow-x: auto;
         }
 
-        .btn-external {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: 0.3s;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
 
-        .btn-external:hover { background-color: #357ae8; }
-
-        .nav-back {
-            margin-top: 30px;
-            text-align: center;
+        table th, table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
         }
 
-        .nav-back a {
-            text-decoration: none;
+        table th {
+            background-color: #f8f9fa;
             color: #555;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-back {
             padding: 8px 16px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            text-decoration: none;
+            color: #555;
+            transition: 0.3s;
         }
 
-        @media (max-width: 600px) {
-            .charts-grid { grid-template-columns: 1fr; }
+        .btn-back:hover {
+            background: #555;
+            color: white;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Dashboard Sajian Data</h1>
-        <a class="btn-external" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">Lihat Full Report ↗</a>
-    </header>
+<nav class="sidebar-nav">
+    <h2 style="margin:0; color: var(--primary);">Sajian Data</h2>
+    <a href="../index2.html" class="btn-back">Kembali Utama</a>
+</nav>
 
-    <!-- Kartu Statistik (KPI) -->
+<div class="container">
+    
+    <!-- Ringkasan Data (KPI) -->
     <div class="stats-grid">
         <div class="card">
-            <h3>Total Kunjungan</h3>
-            <p>12,540</p>
+            <h3>Total Data</h3>
+            <div class="value">1,254</div>
+            <small style="color: var(--success)">+12% dari bulan lalu</small>
         </div>
         <div class="card">
-            <h3>Data Terinput</h3>
-            <p>850</p>
+            <h3>Pencapaian</h3>
+            <div class="value">85%</div>
+            <small style="color: var(--primary)">Target: 100%</small>
         </div>
         <div class="card">
-            <h3>Efisiensi</h3>
-            <p>92%</p>
+            <h3>Kategori Aktif</h3>
+            <div class="value">12</div>
+            <small>Sektor Utama</small>
         </div>
         <div class="card">
-            <h3>Target</h3>
-            <p>1,000</p>
+            <h3>Update Terakhir</h3>
+            <div class="value" style="font-size: 18px;">24 Mei 2024</div>
+            <small>Pukul 10:00 WIB</small>
         </div>
     </div>
 
-    <!-- Area Grafik -->
+    <!-- Grafik Section -->
     <div class="charts-grid">
-        <div class="chart-container">
-            <canvas id="barChart"></canvas>
+        <div class="card">
+            <h3>Tren Perkembangan (Bulanan)</h3>
+            <canvas id="lineChart"></canvas>
         </div>
-        <div class="chart-container">
+        <div class="card">
+            <h3>Distribusi Kategori</h3>
             <canvas id="pieChart"></canvas>
         </div>
     </div>
 
-    <div class="nav-back">
-        <a href="../index2.html">← Kembali ke Halaman Utama</a>
+    <!-- Tabel Detail -->
+    <div class="table-container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3>Detail Data Per Wilayah</h3>
+            <a href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank" class="btn-link">Buka di Data Studio ↗</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Wilayah</th>
+                    <th>Target</th>
+                    <th>Realisasi</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jakarta Pusat</td>
+                    <td>500</td>
+                    <td>450</td>
+                    <td><span style="color: var(--success)">● Bagus</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jakarta Selatan</td>
+                    <td>400</td>
+                    <td>380</td>
+                    <td><span style="color: var(--success)">● Bagus</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jakarta Utara</td>
+                    <td>350</td>
+                    <td>210</td>
+                    <td><span style="color: var(--danger)">● Perlu Review</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Jakarta Barat</td>
+                    <td>450</td>
+                    <td>445</td>
+                    <td><span style="color: var(--success)">● Selesai</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
 </div>
 
 <script>
-    // Konfigurasi Grafik Batang (Bar Chart)
-    const ctxBar = document.getElementById('barChart').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
+    // Konfigurasi Line Chart
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctxLine, {
+        type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
             datasets: [{
-                label: 'Performa Bulanan',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: '#4285F4',
-                borderRadius: 5
+                label: 'Jumlah Capaian',
+                data: [65, 59, 80, 81, 56, 95],
+                borderColor: '#4285F4',
+                backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                fill: true,
+                tension: 0.4
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: { display: true, text: 'Tren Data Bulanan' }
-            }
+            plugins: { legend: { display: false } }
         }
     });
 
-    // Konfigurasi Grafik Lingkaran (Pie Chart)
+    // Konfigurasi Pie Chart
     const ctxPie = document.getElementById('pieChart').getContext('2d');
     new Chart(ctxPie, {
         type: 'doughnut',
         data: {
-            labels: ['Kategori A', 'Kategori B', 'Kategori C'],
+            labels: ['Sektor A', 'Sektor B', 'Sektor C'],
             datasets: [{
-                data: [40, 30, 30],
-                backgroundColor: ['#4285F4', '#34A853', '#FBBC05']
+                data: [300, 50, 100],
+                backgroundColor: ['#4285F4', '#34A853', '#FBBC05'],
+                hoverOffset: 4
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
             plugins: {
-                title: { display: true, text: 'Distribusi Kategori' }
+                legend: { position: 'bottom' }
             }
         }
     });
