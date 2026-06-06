@@ -3,61 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio pribadi Muhammad Fikri Haikal - Tugas Sistem Informasi Manajemen Perikanan">
-    <title>Home | Portfolio Muhammad Fikri Haikal</title>
-    
+    <title>Home | My Personal Website</title>
     <style>
-        /* ===================================
-           RESET & DASAR
-           =================================== */
-
+        /* ===== RESET & DASAR ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
         }
 
-        /* ===================================
-           VARIABEL WARNA & TIPOGRAFI
-           =================================== */
-
-        :root {
-            --color-primary: #1abc9c;
-            --color-primary-dark: #16a085;
-            --color-secondary: #3498db;
-            --color-tertiary: #e74c3c;
-            --color-dark: #2c3e50;
-            --color-light: #f8f9fa;
-            --color-text: #333;
-            --color-text-light: #555;
-            --color-border: #ecf0f1;
-            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s ease;
-        }
-
-        /* ===================================
-           HEADER & NAVIGASI
-           =================================== */
-
-        .header {
+        /* ===== HEADER & NAVIGASI ===== */
+        header {
             background-color: #fff;
             padding: 20px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -65,303 +34,123 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-dark);
-            letter-spacing: 1px;
+            font-weight: bold;
+            color: #2c3e50;
         }
 
-        .nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav__link {
+        nav a {
             text-decoration: none;
-            color: var(--color-text-light);
+            color: #555;
+            margin-left: 20px;
             font-weight: 500;
-            transition: var(--transition);
+            transition: 0.3s;
         }
 
-        .nav__link:hover {
-            color: var(--color-primary);
+        nav a:hover {
+            color: #1abc9c;
         }
 
-        /* ===================================
-           HERO SECTION
-           =================================== */
-
+        /* ===== HERO SECTION ===== */
         .hero {
             height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(
-                rgba(44, 62, 80, 0.8), 
-                rgba(44, 62, 80, 0.8)
-            ), 
-            url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80');
+            text-align: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)),
+                        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: white;
             padding: 0 20px;
         }
 
-        .hero__content {
-            text-align: center;
-            max-width: 900px;
-        }
-
-        .hero__title {
+        .hero-content h1 {
             font-size: 3.5rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
 
-        .hero__subtitle {
+        .hero-content p {
             font-size: 1.2rem;
-            margin-bottom: 50px;
-            opacity: 0.95;
-            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        /* ===================================
-           TOMBOL & BUTTON GROUP
-           =================================== */
-
+        /* ===== BUTTON STYLE ===== */
         .btn {
             padding: 12px 30px;
+            background-color: #1abc9c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
+            font-weight: bold;
+            transition: 0.3s;
             display: inline-block;
-            border: 2px solid transparent;
-            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #16a085;
+            transform: scale(1.05);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
             text-align: center;
-        }
-
-        .btn--primary {
-            background-color: var(--color-primary);
-        }
-
-        .btn--primary:hover {
-            background-color: var(--color-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn--secondary {
-            background-color: var(--color-secondary);
-        }
-
-        .btn--secondary:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn--tertiary {
-            background-color: var(--color-tertiary);
-        }
-
-        .btn--tertiary:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Button Group */
-        .button-group {
-            margin-bottom: 40px;
-        }
-
-        .button-group__title {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .button-group__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            justify-items: center;
-        }
-
-        .button-group--secondary,
-        .button-group--tertiary {
-            opacity: 0.95;
-        }
-
-        /* ===================================
-           FOOTER
-           =================================== */
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--color-dark);
+            padding: 40px 0;
+            background: #2c3e50;
             color: white;
-            margin-top: 100px;
         }
 
-        .footer__text {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        /* ===================================
-           RESPONSIVE DESIGN
-           =================================== */
-
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 20px;
-                padding: 15px 5%;
-            }
-
-            .nav {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-
-            .hero {
-                height: auto;
-                min-height: 100vh;
-                padding: 40px 20px;
-            }
-
-            .hero__title {
+            .hero-content h1 {
                 font-size: 2.5rem;
-                margin-bottom: 20px;
             }
 
-            .hero__subtitle {
-                font-size: 1rem;
-                margin-bottom: 40px;
+            nav {
+                display: none;
             }
-
-            .button-group {
-                margin-bottom: 30px;
-            }
-
-            .button-group__grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 14px 20px;
-            }
-
-            .button-group__title {
-                font-size: 1rem;
-                margin-bottom: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero__title {
-                font-size: 2rem;
-            }
-
-            .hero__subtitle {
-                font-size: 0.95rem;
-            }
-
-            .logo {
-                font-size: 1.3rem;
-            }
-
-            .nav {
-                gap: 10px;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* ===================================
-           UTILITY CLASSES
-           =================================== */
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-small {
-            margin-top: 10px;
-        }
-
-        .mt-medium {
-            margin-top: 20px;
-        }
-
-        .mt-large {
-            margin-top: 40px;
         }
     </style>
 </head>
+
 <body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="logo">PORTFOLIO</div>
-        <nav class="nav">
-            <a href="index.html" class="nav__link">Home</a>
-            <a href="biodata.html" class="nav__link">Biodata</a>
-            <a href="gallery.html" class="nav__link">Gallery</a>
-            <a href="video.html" class="nav__link">Video</a>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="logo">PORTFOLIO.</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="biodata.html">Biodata</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="video.html">Video</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO SECTION ===== -->
     <section class="hero">
-        <div class="hero__content">
-            <h1 class="hero__title">Halo, Saya Muhammad Fikri Haikal</h1>
-            <p class="hero__subtitle">
-                Selamat datang di ruang profile saya. 
-                Ini adalah tugas membuat website mata kuliah 
-                Sistem Informasi Manajemen Perikanan.
-            </p>
-            
-            <!-- Navigation Buttons -->
+        <div class="hero-content">
+            <h1>Halo, Saya Muhammad Fikri Haikal</h1>
+            <p>Selamat datang di ruang profile saya. Ini adalah tugas membuat website mata kuliah sistem informasi manajemen perikanan.</p>
+
+            <!-- ===== BUTTON GROUPS ===== -->
             <div class="button-group">
-                <a href="biodata.html" class="btn btn--primary">Profile Saya Lebih Jauh</a>
-            </div>
-
-            <!-- Assignment Buttons -->
-            <div class="button-group button-group--secondary">
-                <h3 class="button-group__title">Tugas-Tugas</h3>
-                <div class="button-group__grid">
-                    <a href="tugas2.html" class="btn btn--secondary">Tugas 2</a>
-                    <a href="https://forms.gle/eufpBWjGh2a87FYV6" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Tugas 3</a>
-                    <a href="https://forms.gle/J3V6Za9je1DmotKS7" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Tugas 4</a>
-                </div>
-            </div>
-
-            <!-- Data Presentation Buttons -->
-            <div class="button-group button-group--tertiary">
-                <h3 class="button-group__title">Sajian Data</h3>
-                <div class="button-group__grid">
-                    <a href="https://datastudio.google.com/s/nAg4-byfyH8" class="btn btn--tertiary" target="_blank" rel="noopener noreferrer">Sajian Data Tugas 3</a>
-                    <a href="sajian-data-tugas-4.html" class="btn btn--tertiary">Sajian Data Tugas 4</a>
-                    <a href="tugas-5.html" class="btn btn--tertiary">Sajian Data Tugas 5</a>
-                </div>
+                <a href="biodata.html" class="btn">Profile Saya Lebih Jauh</a>
+                <a href="tugas2.html" class="btn">Tugas 2</a>
+                <a href="https://forms.gle/eufpBWjGh2a87FYV6" class="btn">Tugas 3</a>
+                <a href="https://forms.gle/J3V6Za9je1DmotKS7" class="btn">Tugas 4</a>
+                <a href="https://datastudio.google.com/s/nAg4-byfyH8" class="btn">Sajian Data Tugas 3</a>
+                <a href="sajian data tugas 4.html" class="btn">Sajian Data Tugas 4</a>
+                <a href="tugas 5.html" class="btn">Sajian Data Tugas 5</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p class="footer__text">&copy; 2026 Muhammad Fikri Haikal. Dibuat dengan sepenuh hati.</p>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Muhammad Fikri Haikal. Dibuat dengan sepenuh hati.</p>
     </footer>
 </body>
+
 </html>
