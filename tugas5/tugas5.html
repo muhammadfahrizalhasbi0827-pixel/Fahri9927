@@ -292,8 +292,8 @@ table tbody tr:hover {
                 <h3><i class="fas fa-user-plus"></i> Data Pendaftaran</h3>
                 <p style="margin-bottom: 15px; font-size: 14px; color: #666;">Akses formulir pendaftaran anggota/peserta dan hasil rekapitulasi data.</p>
                 <div class="btn-group">
-                    <a href="https://forms.gle/eCKEEYWjmUHXacL29" target="_blank" class="btn"><i class="fab fa-google"></i> Buka Google Form Kepuasan</a>
-                    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVG13QgcDQRKCriRLZrhXiXY07JbnNzQOdvXPB_nV8qRxKN5nJ1GVljaHZ1o0ThZosUj5RibrcdrGx/pubhtml" target="_blank" class="btn btn-excel"><i class="fas fa-file-excel"></i> Lihat Hasil Spreadsheet</a>
+                    <a href="https://forms.gle/9Pd7VgJmnGZm8d4N7" target="_blank" class="btn"><i class="fab fa-google"></i> Buka Google Form Pendaftaran</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1GA-d2OBZUEMhyDuRrhZtfUw1-6xDfN6823z5EOrRU1k/edit?usp=sharing" target="_blank" class="btn btn-excel"><i class="fas fa-file-excel"></i> Lihat Hasil Spreadsheet</a>
                 </div>
             </div>
 
@@ -327,25 +327,44 @@ table tbody tr:hover {
                 <button class="tab-btn active" onclick="switchDashboard(event, 'dashboard-pendaftaran')">
                     <i class="fas fa-users"></i> Dashboard Pendaftaran
                 </button>
+                <button class="tab-btn" onclick="switchDashboard(event, 'dashboard-kepuasan')">
+                    <i class="fas fa-laugh-beam"></i> Dashboard Survei Kepuasan
+                </button>
                 <button class="tab-btn tab-btn-excel" onclick="switchDashboard(event, 'excel-pendaftaran')">
                     <i class="fas fa-file-excel"></i> Spreadsheet Pendaftaran (Excel)
+                </button>
+                <button class="tab-btn tab-btn-excel" onclick="switchDashboard(event, 'excel-kepuasan')">
+                    <i class="fas fa-file-excel"></i> Spreadsheet Kepuasan (Excel)
                 </button>
             </div>
 
             <!-- Tab Content: Looker Studio Pendaftaran -->
             <div id="dashboard-pendaftaran" class="tab-content">
                 <div class="iframe-wrapper">
-                    <iframe src="https://datastudio.google.com/embed/reporting/0a3f4b3d-efc0-4205-b2d2-0f56f255fb46/page/page_12345" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                    <iframe src="https://datastudio.google.com/embed/reporting/938a5773-54b8-4baf-a757-fd899da15779/page/page_12345" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                </div>
+            </div>
+
+            <!-- Tab Content: Looker Studio Kepuasan -->
+            <div id="dashboard-kepuasan" class="tab-content" style="display: none;">
+                <div class="iframe-wrapper">
+                    <iframe src="https://datastudio.google.com/embed/reporting/33d569a2-f2b0-46a5-8a32-d63f8fba7cef/page/page_12345" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
                 </div>
             </div>
 
             <!-- Tab Content: Spreadsheet/Excel Pendaftaran -->
             <div id="excel-pendaftaran" class="tab-content" style="display: none;">
                 <div class="iframe-wrapper">
-                    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVG13QgcDQRKCriRLZrhXiXY07JbnNzQOdvXPB_nV8qRxKN5nJ1GVljaHZ1o0ThZosUj5RibrcdrGx/pubhtml" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://docs.google.com/spreadsheets/d/1GA-d2OBZUEMhyDuRrhZtfUw1-6xDfN6823z5EOrRU1k/edit?rm=minimal" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
-            
+
+            <!-- Tab Content: Spreadsheet/Excel Kepuasan -->
+            <div id="excel-kepuasan" class="tab-content" style="display: none;">
+                <div class="iframe-wrapper">
+                    <iframe src="https://docs.google.com/spreadsheets/d/15x3pr595R5p4Z_GZiMgiJkJh0mZES-EevAjzIwGZEkc/edit?rm=minimal" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
 
         <h2 class="section-title"><i class="fas fa-book-open"></i> Arsip Notulensi Rapat</h2>
