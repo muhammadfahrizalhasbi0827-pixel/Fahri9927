@@ -1,145 +1,1198 @@
+
+
+Profil desa · HTML
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | My Personal Website</title>
+    <title>Desa Makmur Sejahtera - Profil Desa</title>
     <style>
-        /* ===== RESET & DASAR ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+ 
+        :root {
+            --hijau-utama: #2d5016;
+            --hijau-muda: #6ba644;
+            --cokelat: #8b6f47;
+            --krem: #f5f3ee;
+            --putih: #ffffff;
+            --abu: #6b7280;
+            --teks: #1f2937;
         }
-
-        /* ===== HEADER & NAVIGASI ===== */
+ 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--teks);
+            background-color: var(--krem);
+        }
+ 
+        /* HEADER & NAVIGASI */
         header {
-            background-color: #fff;
-            padding: 20px 10%;
+            background: linear-gradient(135deg, var(--hijau-utama) 0%, var(--hijau-muda) 100%);
+            color: var(--putih);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+ 
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
-
+ 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #2c3e50;
+            letter-spacing: -0.5px;
         }
-
+ 
+        .logo-sub {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+ 
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+ 
         nav a {
+            color: var(--putih);
             text-decoration: none;
-            color: #555;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: 0.3s;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
         }
-
+ 
         nav a:hover {
-            color: #1abc9c;
+            border-bottom-color: var(--krem);
         }
-
-        /* ===== HERO SECTION ===== */
+ 
+        /* DROPDOWN MENU */
+        .menu-dropdown {
+            position: relative;
+        }
+ 
+        .menu-btn {
+            background: rgba(255,255,255,0.2);
+            color: var(--putih);
+            border: 2px solid var(--putih);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+ 
+        .menu-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+ 
+        .menu-btn.active {
+            background: var(--putih);
+            color: var(--hijau-utama);
+        }
+ 
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--putih);
+            min-width: 250px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            z-index: 200;
+        }
+ 
+        .dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+ 
+        .dropdown-content a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--teks);
+            text-decoration: none;
+            border-bottom: 1px solid var(--krem);
+            transition: all 0.3s;
+        }
+ 
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+ 
+        .dropdown-content a:hover {
+            background: var(--krem);
+            color: var(--hijau-utama);
+            padding-left: 2rem;
+            font-weight: 600;
+        }
+ 
+        .dropdown-content .divider-menu {
+            height: 1px;
+            background: var(--krem);
+            margin: 0.5rem 0;
+        }
+ 
+        .dropdown-title {
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            border-bottom: 2px solid var(--hijau-muda);
+        }
+ 
+        /* HERO SECTION */
         .hero {
-            height: 90vh;
+            background: linear-gradient(135deg, var(--hijau-utama) 0%, var(--hijau-muda) 100%);
+            color: var(--putih);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+ 
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+ 
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+ 
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+ 
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+ 
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+ 
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+ 
+        /* CONTAINER UMUM */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+ 
+        .section {
+            padding: 4rem 0;
+        }
+ 
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--hijau-utama);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+ 
+        .section-subtitle {
+            color: var(--abu);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+ 
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--hijau-utama), var(--hijau-muda));
+            margin-bottom: 2rem;
+        }
+ 
+        /* TENTANG DESA */
+        .tentang {
+            background: var(--putih);
+        }
+ 
+        .tentang-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+ 
+        .tentang-content h3 {
+            font-size: 1.8rem;
+            color: var(--hijau-utama);
+            margin-bottom: 1rem;
+        }
+ 
+        .tentang-content p {
+            margin-bottom: 1rem;
+            color: var(--teks);
+            line-height: 1.8;
+        }
+ 
+        .tentang-highlight {
+            background: linear-gradient(120deg, rgba(107, 166, 68, 0.1) 0%, rgba(139, 111, 71, 0.1) 100%);
+            padding: 2rem;
+            border-left: 4px solid var(--hijau-muda);
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+ 
+        .tentang-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--hijau-muda), var(--cokelat));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--putih);
+            font-size: 4rem;
+        }
+ 
+        /* DEMOGRAFI */
+        .demografi {
+            background: var(--putih);
+        }
+ 
+        .demografi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+ 
+        .demografi-card {
+            background: var(--krem);
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--hijau-muda);
             text-align: center;
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)),
-                        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 0 20px;
         }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+ 
+        .demografi-card h4 {
+            color: var(--hijau-utama);
+            margin-bottom: 0.5rem;
         }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        /* ===== BUTTON STYLE ===== */
-        .btn {
-            padding: 12px 30px;
-            background-color: #1abc9c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
+ 
+        .demografi-card .value {
+            font-size: 2rem;
             font-weight: bold;
-            transition: 0.3s;
-            display: inline-block;
-            margin: 5px;
+            color: var(--hijau-muda);
+            margin: 1rem 0;
         }
-
-        .btn:hover {
-            background-color: #16a085;
+ 
+        /* PRODUK UNGGULAN */
+        .produk {
+            background: var(--putih);
+        }
+ 
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+ 
+        .produk-card {
+            background: var(--krem);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+ 
+        .produk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+ 
+        .produk-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--hijau-muda), var(--hijau-utama));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--putih);
+        }
+ 
+        .produk-info {
+            padding: 1.5rem;
+        }
+ 
+        .produk-info h4 {
+            color: var(--hijau-utama);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+ 
+        .produk-info p {
+            color: var(--abu);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+ 
+        /* BERITA */
+        .berita {
+            background: var(--krem);
+        }
+ 
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+ 
+        .berita-card {
+            background: var(--putih);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s;
+        }
+ 
+        .berita-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+ 
+        .berita-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--cokelat), var(--hijau-muda));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--putih);
+        }
+ 
+        .berita-content {
+            padding: 1.5rem;
+        }
+ 
+        .berita-date {
+            color: var(--hijau-muda);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+ 
+        .berita-card h4 {
+            color: var(--hijau-utama);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+ 
+        .berita-card p {
+            color: var(--abu);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+ 
+        .berita-link {
+            color: var(--hijau-muda);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+ 
+        .berita-link:hover {
+            color: var(--hijau-utama);
+        }
+ 
+        /* GALERI */
+        .galeri {
+            background: var(--putih);
+        }
+ 
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+ 
+        .galeri-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--hijau-muda), var(--cokelat));
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--putih);
+            font-size: 2rem;
+            overflow: hidden;
+        }
+ 
+        .galeri-item:hover {
             transform: scale(1.05);
         }
-
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            background: #2c3e50;
-            color: white;
+ 
+        /* ORGANISASI */
+        .organisasi {
+            background: var(--krem);
         }
-
-        /* ===== RESPONSIVE DESIGN ===== */
+ 
+        .organisasi-chart {
+            margin-top: 2rem;
+            background: var(--putih);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+ 
+        .position {
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-muda));
+            color: var(--putih);
+            padding: 1rem;
+            margin: 1rem auto;
+            text-align: center;
+            border-radius: 6px;
+            max-width: 300px;
+            font-weight: 600;
+        }
+ 
+        .position.kepala {
+            background: linear-gradient(135deg, var(--hijau-utama), var(--cokelat));
+            font-size: 1.1rem;
+        }
+ 
+        /* KONTAK & LOKASI */
+        .kontak {
+            background: var(--putih);
+        }
+ 
+        .kontak-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+ 
+        .kontak-info h4 {
+            color: var(--hijau-utama);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+ 
+        .kontak-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+ 
+        .kontak-icon {
+            font-size: 1.5rem;
+            color: var(--hijau-muda);
+            min-width: 30px;
+        }
+ 
+        .kontak-item p {
+            color: var(--abu);
+        }
+ 
+        .peta {
+            background: linear-gradient(135deg, var(--hijau-muda), var(--hijau-utama));
+            border-radius: 8px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--putih);
+            font-size: 2rem;
+        }
+ 
+        /* FOOTER */
+        footer {
+            background: var(--hijau-utama);
+            color: var(--putih);
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+        }
+ 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+ 
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+ 
+        .footer-section ul {
+            list-style: none;
+        }
+ 
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+ 
+        .footer-section a:hover {
+            color: var(--putih);
+        }
+ 
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            opacity: 0.8;
+        }
+ 
+        /* TOMBOL */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--hijau-muda);
+            color: var(--putih);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+ 
+        .btn:hover {
+            background: var(--hijau-utama);
+        }
+ 
+        .btn-secondary {
+            background: var(--cokelat);
+        }
+ 
+        .btn-secondary:hover {
+            background: #7a5d3a;
+        }
+ 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
             }
-
-            nav {
-                display: none;
+ 
+            .hero h1 {
+                font-size: 2.2rem;
             }
+ 
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+ 
+            .tentang-grid {
+                grid-template-columns: 1fr;
+            }
+ 
+            .tentang-image {
+                height: 300px;
+            }
+ 
+            .kontak-grid {
+                grid-template-columns: 1fr;
+            }
+ 
+            .section-title {
+                font-size: 2rem;
+            }
+ 
+            .galeri-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+ 
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+ 
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .modal-content {
+            background-color: var(--putih);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+ 
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--abu);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+ 
+        .close:hover {
+            color: var(--hijau-utama);
+        }
+ 
+        .modal h2 {
+            color: var(--hijau-utama);
+            margin-bottom: 1rem;
         }
     </style>
 </head>
-
 <body>
-   
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Halo, Saya Muhammad Fikri Haikal</h1>
-            <p>Selamat datang di ruang profile saya. Ini adalah tugas membuat website mata kuliah sistem informasi manajemen perikanan.</p>
-
-            <!-- ===== BUTTON GROUPS ===== -->
-            <div class="button-group">
-                <a href="tugas1/tugas1.html" class="btn">Tugas 1</a>
-                <a href="tugas2/tugas2.html" class="btn">Tugas 2</a>
-                 <a href="tugas3/tugas3.html" class="btn">Tugas 3</a>
-                 <a href="tugas4/tugas4.html" class="btn">Tugas 4</a>
-                 <a href="tugas5/tugas5.html" class="btn">Tugas 5</a>
+ 
+<!-- HEADER -->
+<header>
+    <div class="navbar">
+        <div class="logo">
+            🌾 Desa Makmur
+            <div class="logo-sub">SEJAHTERA</div>
+        </div>
+        <nav style="display: flex; align-items: center; gap: 2rem;">
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#berita">Berita</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
             
+            <!-- DROPDOWN MENU FITUR -->
+            <div class="menu-dropdown">
+                <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+                    ☰ Menu Fitur
+                </button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-title">Pilih Fitur</div>
+                    <a href="#home" onclick="closeDropdown()">🏠 Beranda</a>
+                    <a href="#tentang" onclick="closeDropdown()">ℹ️ Tentang Desa</a>
+                    <a href="#tentang" onclick="closeDropdown()">📊 Data Demografi</a>
+                    <a href="#produk" onclick="closeDropdown()">🏆 Produk Unggulan</a>
+                    <a href="#berita" onclick="closeDropdown()">📰 Berita Terkini</a>
+                    <div class="divider-menu"></div>
+                    <a href="#galeri" onclick="closeDropdown()">📸 Galeri Foto</a>
+                    <a href="#organisasi" onclick="closeDropdown()">🏛️ Struktur Organisasi</a>
+                    <a href="#kontak" onclick="closeDropdown()">📞 Hubungi Kami</a>
+                    <div class="divider-menu"></div>
+                    <a href="javascript:void(0)" onclick="printPage(); closeDropdown()" style="color: var(--hijau-muda); font-weight: 600;">🖨️ Cetak Halaman</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+ 
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Desa Makmur Sejahtera</h1>
+        <p class="hero-subtitle">Maju bersama, berkembang bersama, makmur bersama</p>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">5.240</div>
+                <div class="stat-label">Jumlah Penduduk</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1.200</div>
+                <div class="stat-label">Kepala Keluarga</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Tahun Berdiri</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8.5</div>
+                <div class="stat-label">Km² Luas Desa</div>
             </div>
         </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p>&copy; 2026 Muhammad Fikri Haikal. Dibuat dengan sepenuh hati.</p>
-    </footer>
+    </div>
+</section>
+ 
+<!-- TENTANG DESA -->
+<section class="section tentang" id="tentang">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Tentang Desa Kami</h2>
+        <p class="section-subtitle">Mengenal lebih dekat profil dan visi misi Desa Makmur Sejahtera</p>
+        
+        <div class="tentang-grid">
+            <div class="tentang-content">
+                <h3>Sejarah Singkat</h3>
+                <p>Desa Makmur Sejahtera adalah sebuah desa yang terletak di kabupaten yang kaya akan potensi alam. Desa ini didirikan pada tahun 1999 dengan komitmen untuk membangun masyarakat yang mandiri dan sejahtera.</p>
+                
+                <div class="tentang-highlight">
+                    <strong>Visi:</strong> Menjadi desa maju, mandiri, dan berdaya saing tinggi dengan masyarakat yang sejahtera dan berkarakter mulia.
+                    <br><br>
+                    <strong>Misi:</strong>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>Mengembangkan potensi ekonomi lokal</li>
+                        <li>Meningkatkan kualitas pendidikan dan kesehatan</li>
+                        <li>Melestarikan budaya dan lingkungan</li>
+                        <li>Membangun infrastruktur yang berkelanjutan</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tentang-image">🏡</div>
+        </div>
+    </div>
+</section>
+ 
+<!-- DEMOGRAFI -->
+<section class="section demografi">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Demografi Desa</h2>
+        <p class="section-subtitle">Data kependudukan Desa Makmur Sejahtera</p>
+        
+        <div class="demografi-grid">
+            <div class="demografi-card">
+                <h4>👨‍👩‍👧‍👦 Laki-laki</h4>
+                <div class="value">2.680</div>
+                <p>Jiwa</p>
+            </div>
+            <div class="demografi-card">
+                <h4>👩 Perempuan</h4>
+                <div class="value">2.560</div>
+                <p>Jiwa</p>
+            </div>
+            <div class="demografi-card">
+                <h4>👶 Usia Produktif</h4>
+                <div class="value">68%</div>
+                <p>Dari Total Penduduk</p>
+            </div>
+            <div class="demografi-card">
+                <h4>🏫 Tingkat Pendidikan</h4>
+                <div class="value">85%</div>
+                <p>SD ke atas</p>
+            </div>
+            <div class="demografi-card">
+                <h4>💼 Mata Pencaharian</h4>
+                <div class="value">60%</div>
+                <p>Pertanian</p>
+            </div>
+            <div class="demografi-card">
+                <h4>🏘️ Jumlah RT</h4>
+                <div class="value">18</div>
+                <p>Rukun Tetangga</p>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- PRODUK UNGGULAN -->
+<section class="section produk" id="produk">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Produk Unggulan</h2>
+        <p class="section-subtitle">Produk-produk berkualitas dari hasil potensi lokal Desa Makmur Sejahtera</p>
+        
+        <div class="produk-grid">
+            <div class="produk-card">
+                <div class="produk-image">🌾</div>
+                <div class="produk-info">
+                    <h4>Padi Organik</h4>
+                    <p>Padi berkualitas tinggi hasil pertanian organik yang ramah lingkungan dan kaya nutrisi.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="produk-card">
+                <div class="produk-image">🥕</div>
+                <div class="produk-info">
+                    <h4>Sayuran Segar</h4>
+                    <p>Berbagai macam sayuran segar yang ditanam dengan teknik pertanian modern dan berkelanjutan.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="produk-card">
+                <div class="produk-image">🐔</div>
+                <div class="produk-info">
+                    <h4>Hasil Ternak</h4>
+                    <p>Produk peternakan berkualitas termasuk daging, telur, dan susu dari ternak sehat.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="produk-card">
+                <div class="produk-image">🍯</div>
+                <div class="produk-info">
+                    <h4>Madu Asli</h4>
+                    <p>Madu murni hasil dari perkebunan lebah yang asri dan terawat dengan baik.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="produk-card">
+                <div class="produk-image">🧵</div>
+                <div class="produk-info">
+                    <h4>Kerajinan Tangan</h4>
+                    <p>Produk kerajinan tradisional yang dibuat dengan keterampilan tinggi masyarakat lokal.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="produk-card">
+                <div class="produk-image">🌿</div>
+                <div class="produk-info">
+                    <h4>Tanaman Obat</h4>
+                    <p>Tanaman obat tradisional yang dikembangkan untuk mendukung kesehatan masyarakat.</p>
+                    <a href="javascript:void(0)" class="berita-link">Pelajari selengkapnya →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- BERITA -->
+<section class="section berita" id="berita">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Berita Terkini</h2>
+        <p class="section-subtitle">Update informasi dan kegiatan terbaru dari Desa Makmur Sejahtera</p>
+        
+        <div class="berita-grid">
+            <div class="berita-card">
+                <div class="berita-image">📰</div>
+                <div class="berita-content">
+                    <div class="berita-date">25 Januari 2024</div>
+                    <h4>Program BLT Dana Desa Mulai Disalurkan</h4>
+                    <p>Bantuan Langsung Tunai dari Dana Desa kini mulai disalurkan ke seluruh masyarakat Desa Makmur Sejahtera untuk meringankan beban ekonomi.</p>
+                    <a href="javascript:void(0)" class="berita-link">Baca selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="berita-card">
+                <div class="berita-image">🎓</div>
+                <div class="berita-content">
+                    <div class="berita-date">20 Januari 2024</div>
+                    <h4>Pembukaan Perpustakaan Digital Desa</h4>
+                    <p>Desa Makmur Sejahtera membuka layanan perpustakaan digital untuk meningkatkan akses pendidikan dan pengetahuan masyarakat.</p>
+                    <a href="javascript:void(0)" class="berita-link">Baca selengkapnya →</a>
+                </div>
+            </div>
+            
+            <div class="berita-card">
+                <div class="berita-image">🏗️</div>
+                <div class="berita-content">
+                    <div class="berita-date">15 Januari 2024</div>
+                    <h4>Pembangunan Infrastruktur Jalan Sepanjang 3 Km</h4>
+                    <p>Pemerintah Desa memulai proyek besar pembangunan dan perbaikan jalan untuk meningkatkan mobilitas dan pembangunan ekonomi desa.</p>
+                    <a href="javascript:void(0)" class="berita-link">Baca selengkapnya →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- GALERI -->
+<section class="section galeri" id="galeri">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Galeri Foto</h2>
+        <p class="section-subtitle">Dokumentasi keindahan dan aktivitas Desa Makmur Sejahtera</p>
+        
+        <div class="galeri-grid">
+            <div class="galeri-item" onclick="openModal(this)">🌅</div>
+            <div class="galeri-item" onclick="openModal(this)">🌾</div>
+            <div class="galeri-item" onclick="openModal(this)">👥</div>
+            <div class="galeri-item" onclick="openModal(this)">🏘️</div>
+            <div class="galeri-item" onclick="openModal(this)">🎉</div>
+            <div class="galeri-item" onclick="openModal(this)">🌳</div>
+            <div class="galeri-item" onclick="openModal(this)">💧</div>
+            <div class="galeri-item" onclick="openModal(this)">🤝</div>
+        </div>
+    </div>
+</section>
+ 
+<!-- STRUKTUR ORGANISASI -->
+<section class="section organisasi" id="organisasi">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Struktur Organisasi</h2>
+        <p class="section-subtitle">Susunan pemerintahan Desa Makmur Sejahtera</p>
+        
+        <div class="organisasi-chart">
+            <div class="position kepala">👨‍⚖️ Kepala Desa<br><small style="font-size: 0.8rem; margin-top: 0.3rem;">Bapak Sutrisno, S.Pd</small></div>
+            
+            <div style="text-align: center; margin: 1.5rem 0; color: var(--hijau-muda); font-weight: bold;">↓</div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                <div style="text-align: center;">
+                    <div class="position">📋 Sekretaris Desa<br><small style="font-size: 0.8rem; margin-top: 0.3rem;">Ibu Siti Maryam</small></div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="position">💰 Bendahara Desa<br><small style="font-size: 0.8rem; margin-top: 0.3rem;">Bapak Hendra, SE</small></div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 1.5rem 0; color: var(--hijau-muda); font-weight: bold;">↓</div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <div class="position">🏥 Kepala Seksi<br>Kesehatan</div>
+                <div class="position">🎓 Kepala Seksi<br>Pendidikan</div>
+                <div class="position">💼 Kepala Seksi<br>Ekonomi</div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- KONTAK & LOKASI -->
+<section class="section kontak" id="kontak">
+    <div class="container">
+        <div class="divider"></div>
+        <h2 class="section-title">Hubungi Kami</h2>
+        <p class="section-subtitle">Informasi kontak dan lokasi Desa Makmur Sejahtera</p>
+        
+        <div class="kontak-grid">
+            <div class="kontak-info">
+                <h4>Informasi Kontak</h4>
+                
+                <div class="kontak-item">
+                    <div class="kontak-icon">📍</div>
+                    <div>
+                        <strong>Alamat</strong>
+                        <p>Jalan Pendidikan No. 25, Desa Makmur Sejahtera, Kecamatan Sejati, Kabupaten Maju Jaya</p>
+                    </div>
+                </div>
+                
+                <div class="kontak-item">
+                    <div class="kontak-icon">📞</div>
+                    <div>
+                        <strong>Telepon</strong>
+                        <p>(0274) 1234567 - Jam kerja: Senin-Jumat 08:00-16:00</p>
+                    </div>
+                </div>
+                
+                <div class="kontak-item">
+                    <div class="kontak-icon">📧</div>
+                    <div>
+                        <strong>Email</strong>
+                        <p>info@desamamkursejahtera.id</p>
+                    </div>
+                </div>
+                
+                <div class="kontak-item">
+                    <div class="kontak-icon">🌐</div>
+                    <div>
+                        <strong>Layanan Whatsapp</strong>
+                        <p>+62 812-3456-7890 (24 jam)</p>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="alert('Hubungi kami melalui WhatsApp: 0812-3456-7890')">Hubungi Sekarang</button>
+            </div>
+            
+            <div>
+                <h4 style="color: var(--hijau-utama); margin-bottom: 1rem;">Lokasi Desa</h4>
+                <div class="peta">📍 Peta Lokasi Desa</div>
+                <p style="margin-top: 1rem; color: var(--abu); font-size: 0.9rem;">Kami terletak di posisi strategis dengan akses yang mudah dari berbagai arah kota kabupaten.</p>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Tentang Desa</h4>
+            <p>Desa Makmur Sejahtera adalah desa yang berkomitmen untuk pembangunan berkelanjutan dan kesejahteraan masyarakat.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Menu Cepat</h4>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#tentang">Tentang Desa</a></li>
+                <li><a href="#produk">Produk Unggulan</a></li>
+                <li><a href="#berita">Berita</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Layanan Publik</h4>
+            <ul>
+                <li><a href="javascript:void(0)">Pengajuan Surat</a></li>
+                <li><a href="javascript:void(0)">Aduan Masyarakat</a></li>
+                <li><a href="javascript:void(0)">Info Kegiatan</a></li>
+                <li><a href="javascript:void(0)">Data Penduduk</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Ikuti Kami</h4>
+            <ul>
+                <li><a href="javascript:void(0)">Facebook</a></li>
+                <li><a href="javascript:void(0)">Instagram</a></li>
+                <li><a href="javascript:void(0)">Twitter</a></li>
+                <li><a href="javascript:void(0)">YouTube</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Desa Makmur Sejahtera. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>Dibangun dengan ❤️ untuk kemajuan bersama</p>
+    </div>
+</footer>
+ 
+<!-- MODAL -->
+<div id="fotModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">Galeri Foto</h2>
+        <div style="text-align: center; font-size: 5rem; margin: 2rem 0;" id="modalEmoji"></div>
+        <p id="modalDesc">Dokumentasi kegiatan Desa Makmur Sejahtera yang menunjukkan keindahan alam dan kebersamaan masyarakat.</p>
+    </div>
+</div>
+ 
+<script>
+    // DROPDOWN MENU FUNCTIONS
+    function toggleMenu() {
+        const dropdown = document.getElementById('dropdownContent');
+        const btn = document.getElementById('menuBtn');
+        dropdown.classList.toggle('show');
+        btn.classList.toggle('active');
+    }
+ 
+    function closeDropdown() {
+        const dropdown = document.getElementById('dropdownContent');
+        const btn = document.getElementById('menuBtn');
+        dropdown.classList.remove('show');
+        btn.classList.remove('active');
+    }
+ 
+    // Close dropdown ketika klik di luar
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('dropdownContent');
+        const menuBtn = document.getElementById('menuBtn');
+        
+        if (!event.target.closest('.menu-dropdown')) {
+            dropdown.classList.remove('show');
+            menuBtn.classList.remove('active');
+        }
+    });
+ 
+    // PRINT PAGE FUNCTION
+    function printPage() {
+        window.print();
+    }
+ 
+    // Smooth scroll untuk navigasi
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Modal functions
+    function openModal(element) {
+        const modal = document.getElementById('fotModal');
+        const emoji = element.textContent;
+        document.getElementById('modalEmoji').textContent = emoji;
+        modal.classList.add('show');
+    }
+    
+    function closeModal(event) {
+        const modal = document.getElementById('fotModal');
+        modal.classList.remove('show');
+    }
+    
+    // Close modal ketika tekan ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
+ 
 </body>
-
 </html>
